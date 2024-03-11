@@ -2,6 +2,8 @@ import streamlit as st
 import os
 import pandas as pd
 import pickle
+import sklearn
+
 
 current_dir = os.path.dirname(__file__)
 
