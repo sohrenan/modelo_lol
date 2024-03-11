@@ -1,9 +1,8 @@
-import streamlit as st
 import os
-import pandas as pd
 import pickle
-import sklearn
 
+import pandas as pd
+import streamlit as st
 
 current_dir = os.path.dirname(__file__)
 times = pd.read_csv('times.csv')
