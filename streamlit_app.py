@@ -59,7 +59,7 @@ def main():
         if prediction_result == 1:
             st.write('**resultado:**', f'<span style="font-size:50px; color:blue">Vitória do Time Azul</span>',
                      unsafe_allow_html=True)
-        elif prediction_result == 0:
+        if prediction_result == 0:
             st.write('**resultado:**', f'<span style="font-size:50px; color:red">Vitória do Time Vermelho</span>',
                      unsafe_allow_html=True)
 
