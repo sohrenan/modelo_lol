@@ -62,7 +62,7 @@ def main():
         elif prediction_result == 0:
             st.write('**resultado:**', f'<span style="font-size:50px; color:red">Vitória do Time Vermelho</span>',
                      unsafe_allow_html=True)
-#####
+
 
 def predict_survival(blue_team, red_team):
     to_predict = criar_dados(times, blue_team, red_team)
