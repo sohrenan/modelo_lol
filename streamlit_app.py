@@ -4,9 +4,16 @@ import pickle
 import pandas as pd
 import streamlit as st
 
+def local_css(file_name):
+    with open(file_name) as f:
+        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+
+
+local_css('styles.css')
+
 current_dir = os.path.dirname(__file__)
-times = pd.read_csv('times.csv')
-log_model_path = os.path.join(current_dir, 'rf.sav')
+times = pd.read_csv('data/times.csv')
+log_model_path = 'model/rf.sav'
 with open(log_model_path, 'rb') as file:
     log_model = pickle.load(file)
 
@@ -276,27 +283,49 @@ def main():
     # Get list of valid team names
     team_names = times['nome_time'].tolist()
 
-    col1, col2 = st.columns(2)
+    with st.container():
+        st.image('images/cblol.png')
+    with st.container():
+        st.empty()
+    with st.container():
+        st.empty()
+
+    col1, col2,col3 = st.columns([2, 1, 2])
+
+
 
     with col1:
-        st.header('Time Vermelho')
-        red_team = st.selectbox('Quem joga no time vermelho?', team_names)
+        st.markdown("<h1 style='text-align: center;font-size:40px;'>Red Side</h1>", unsafe_allow_html=True)
+        red_team = st.selectbox('Quem joga Red Side?', team_names)
 
-    with col2:
-        st.header('Time Azul')
-        blue_team = st.selectbox('Quem joga no time azul?', team_names)
 
-    predict_button = st.button('Prever')
+
+    with col3:
+        st.markdown("<h1 style='text-align: center;font-size:40px;'>Blue Side</h1>", unsafe_allow_html=True)
+        blue_team = st.selectbox('Quem joga Blue Side?', team_names)
+
+
+
+
+    with st.container():
+        st.empty()
+
+    left_column, center_column, right_column = st.columns([2.3, 1, 2])
+    with center_column:
+        st.empty()
+        predict_button = st.button('Prever')
+
+
 
     if predict_button:
         prediction_result, proba_red, proba_blue = predict_survival(blue_team, red_team)
-        st.write(f'A probabilidade do time {blue_team} ganhar é de {proba_blue:.2f}', unsafe_allow_html=True)
+        st.write(f'<span text-align: center>A probabilidade do time {blue_team} ganhar é de {proba_blue:.2f}</span>', unsafe_allow_html=True)
         st.write(f'A probabilidade do time {red_team} ganhar é de {proba_red:.2f}', unsafe_allow_html=True)
         if prediction_result == 1:
-            st.write('**resultado:**', f'<span style="font-size:50px; color:blue">Vitória do Time Azul</span>',
+            st.write(f'<span style="font-size:50px; color:blue">Vitória do Time Azul</span>',
                      unsafe_allow_html=True)
         if prediction_result == 0:
-            st.write('**resultado:**', f'<span style="font-size:50px; color:red">Vitória do Time Vermelho</span>',
+            st.write(f'<span style="font-size:50px; color:red">Vitória do Time Vermelho</span>',
                      unsafe_allow_html=True)
 
 
@@ -309,17 +338,15 @@ def predict_survival(blue_team, red_team):
 
     return result, proba_red, proba_blue
 
+hide_default_format = """
+       <style>
+       #MainMenu {visibility: hidden; }
+       footer {visibility: hidden;}
+       </style>
+       """
+st.markdown(hide_default_format, unsafe_allow_html=True)
+
 
 if __name__ == '__main__':
-    st.markdown(
-        """
-        <style>
-        body {
-            color: white;
-            background-color: black;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
+
     main()
