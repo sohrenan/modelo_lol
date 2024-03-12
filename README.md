@@ -1,5 +1,9 @@
 # Modelo de Predição de Partidas CBLOL2024
 
+![Alt text](images/cblol.png)
+  
+### Considerações
+
 * Modelo criado exclusivamente para fim educativos.
 * As bases de treino utilizadas para a predição estão na pasta data.
 
