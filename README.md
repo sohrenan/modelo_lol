@@ -1,6 +1,6 @@
 # Modelo de Predição de Partidas CBLOL2024
 
-![Alt text](images/cblol.png)
+![Alt text](images/cblol_readme.png)
   
 ### Considerações
 * APP hospedado em: https://modelolol-xnuvfktx7yta4kamtgnbek.streamlit.app/
