@@ -3,6 +3,8 @@
 ![Alt text](images/cblol.png)
   
 ### Considerações
+* APP hospedado em: https://modelolol-xnuvfktx7yta4kamtgnbek.streamlit.app/
+
 
 * Modelo criado exclusivamente para fim educativos.
 * As bases de treino utilizadas para a predição estão na pasta data.
