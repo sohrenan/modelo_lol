@@ -4,6 +4,12 @@ import pickle
 import pandas as pd
 import streamlit as st
 
+st.set_page_config(
+    page_title="Previsão Resultados CBLOL 2024",
+    page_icon="images/cblol.ico",  # Provide the path to your favicon
+    layout="centered"
+)
+
 def local_css(file_name):
     with open(file_name) as f:
         st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
@@ -319,8 +325,8 @@ def main():
 
     if predict_button:
         prediction_result, proba_red, proba_blue = predict_survival(blue_team, red_team)
-        st.write(f'<span text-align: center>A probabilidade do time {blue_team} ganhar é de {proba_blue:.2f}</span>', unsafe_allow_html=True)
-        st.write(f'A probabilidade do time {red_team} ganhar é de {proba_red:.2f}', unsafe_allow_html=True)
+        st.write(f'<span text-align: center>A probabilidade do time {blue_team} ganhar é de {proba_blue:.2f}%</span>', unsafe_allow_html=True)
+        st.write(f'A probabilidade do time {red_team} ganhar é de {proba_red:.2f}%', unsafe_allow_html=True)
         if prediction_result == 1:
             st.write(f'<span style="font-size:50px; color:blue">Vitória do Time Azul</span>',
                      unsafe_allow_html=True)
